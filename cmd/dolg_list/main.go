@@ -5,5 +5,6 @@ import (
 )
 
 func main() {
-	fmt.Println("йух")
+	fmt.Println("йух1")
+	fmt.Println("asdf")
 }
