@@ -5,5 +5,8 @@ import (
 )
 
 func main() {
-	fmt.Println("йух")
+	fmt.Println("йух2")
+	for i := 0; i < 2; i++ {
+		fmt.Println(i)
+	}
 }
