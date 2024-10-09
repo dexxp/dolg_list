@@ -9,7 +9,7 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello, World!")
 }
 func goodbyeHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Goodbye")
+	fmt.Fprintf(w, "Goodbye!")
 }
 
 func main() {
