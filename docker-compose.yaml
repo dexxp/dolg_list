@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  backend:
+    image: dolg:v2
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - microservice-network
+  
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - microservice-network
+  
+  pgweb:
+    image: sosedoff/pgweb
+    depends_on:
+      - postgres
+    environment:
+      PGWEB_DATABASE_URL: postgres://postgres:postgres@postgres:5432/$postgres?sslmode=disable
+    ports:
+      - "8085:8081"
+    restart: on-failure
+    networks:
+      - microservice-network
+
+
+networks:
+  microservice-network:
+    driver: bridge
+
+
+volumes:  
+  pgdata: 
